@@ -33,3 +33,13 @@ Google terms: 'ubuntu add user'
 
 If you are bored, find out the difference between the 'adduser' and 'useradd'
 commands.
+
+4. Sudo
+
+There are several ways to allow a user to execute commands with sudo. The
+'ubuntu way' is using the /etc/sudoers.d/ directory. It is pretty
+self-explanatory, but if in doubt:
+
+Google terms: 'ubuntu sudoers.d'
+
+In this step, make sure the 'grader' user can use sudo.
