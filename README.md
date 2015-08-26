@@ -113,6 +113,13 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   Also, be sure you understand the difference between 'ssh' and 'sshd' and
   their respective config files.
 
+  1. Disable root ssh login
+
+  This is only listed in the rubric, not in project details: as mentioned
+  above, decline any login for the root account through ssh, always. This
+  is done in the ssh configuration, look at the corresponding config file
+  for hints, or google 'linux ssh disable root login'.
+
 20. Addendum I: sending / delivering local email
 
   Some tasks ask for notification emails being sent in certain situations.
