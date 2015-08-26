@@ -121,6 +121,41 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   is done in the ssh configuration, look at the corresponding config file
   for hints, or **google 'linux ssh disable root login'**.
 
+7. Firewall
+
+  You can set up your system in a way that it only accepts traffic on
+  certain ports and blocks everything else. The traditional linux tool to
+  do that is 'iptables'. As this is powerful but hard to use for beginners,
+  ubuntu comes with a firewall setup tool that is much easier to use: 'ufw',
+  the 'uncomplicated firewall'.
+
+  **Google terms: 'linux firewall setup', 'ubuntu ufw'**
+
+  The project explicitly asks us to use 'ufw', so only spend time on 
+  'iptables' documentation if you are curious. It is not needed to configure
+  the firewall as requested.
+
+  We are asked to block everything, and allow incoming connections for these
+  services:
+
+  - SSH on port 2200 (we moved it there in the step above)
+  - HTTP on port 80 (we will run a webserver later)
+  - NTP on port 123 (explained in the next step)
+
+  The ubuntu documentation of UFW is detailed enough to do this. You configure
+  the firewall by calling
+
+  $ sudo ufw [allow|deny] [service|port]
+
+  Don't forget to enable the firewall when you're finished configuring it. 
+  Also, when it is enabled, make sure you can still log in before logging 
+  out of your running ssh session! This is another excellent opportunity to
+  lock yourself out from your own VM.
+
+  If you are curious where the configuration you entered on the command line
+  is stored, **google 'ubuntu ufw rules stored'**. Also remember that the
+  'ufw status' command has a 'verbose' option for more information.
+
 20. Addendum I: sending / delivering local email
 
   Some tasks ask for notification emails being sent in certain situations.
