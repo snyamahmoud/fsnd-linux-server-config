@@ -19,7 +19,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   Make sure the file has the correct permissions, or ssh will refuse to
   use it.
 
-  Google terms: 'ssh private key location', 'ssh permissions too open'
+  **Google terms: 'ssh private key location', 'ssh permissions too open'**
   (These steps are also documented on the development environment page.)
 
 3. Users
@@ -30,18 +30,18 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
 
   Create this as a standard Linux user.
 
-  Google terms: 'ubuntu add user'
+  **Google terms: 'ubuntu add user'**
 
-  If you are bored, find out the difference between the 'adduser' and 'useradd'
-  commands.
+  (If you are bored, find out the difference between the 'adduser' and 
+  'useradd' commands.)
 
 4. Sudo
 
-  There are several ways to allow a user to execute commands with sudo. The
-  'ubuntu way' is using the /etc/sudoers.d/ directory. It is pretty
-  self-explanatory, but if in doubt:
+  There are several ways to allow a user to execute commands with sudo. One
+  simple way prepared for you by the Debian/Ubuntu distribution maintainers
+  is using the /etc/sudoers.d/ directory. For details:
 
-  Google terms: 'ubuntu sudoers.d'
+  **Google terms: 'ubuntu sudoers.d'**
 
   In this step, make sure the 'grader' user can use sudo.
 
@@ -59,7 +59,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   and no further measures taken, an attacker can try to guess the password 
   indefinitely and may eventually get access that way.
 
-  Google terms: 'ssh key authentication'
+  **Google terms: 'ssh key authentication'**
 
   You can either create a new key pair for the 'grader' user, or just use the
   private key that has already been created and configured for the root user.
@@ -77,7 +77,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
 
 5. Update all installed packages
 
-  Google terms 'ubuntu update packages'
+  **Google terms 'ubuntu update packages'**
 
   Manual update is easy -- don't forget you need use sudo to do this, and
   don't let the different subcommands of apt-get confuse you.
@@ -96,7 +96,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   automatic updates you have set up, e.g. by having your scripts or tools
   send you notification emails.
 
-  Google terms 'ubuntu automatic security updates'
+  **Google terms 'ubuntu automatic security updates'**
 
 6. Use a non-standard port for SSH
 
@@ -105,7 +105,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   22, so they point their attacks there. If ssh is listening elsewhere, they
   at least have to find out where first.
 
-  Google terms: 'linux sshd use different port'
+  **Google terms: 'linux sshd use different port'**
 
   The project asks us to use port 2200. As said above, don't log out of
   your working ssh session before you have confirmed you can log in on the
@@ -119,7 +119,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   This is only listed in the rubric, not in project details: as mentioned
   above, decline any login for the root account through ssh, always. This
   is done in the ssh configuration, look at the corresponding config file
-  for hints, or google 'linux ssh disable root login'.
+  for hints, or **google 'linux ssh disable root login'**.
 
 20. Addendum I: sending / delivering local email
 
@@ -134,8 +134,8 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   The choice of MTA is subjective, of course.
 
   If you want to learn more about email systems and the abbreviations used
-  to describe them, google 'mta mua'. ('MUA' is the mail user agent, the mail
-  client an end user used for handling email.)
+  to describe them, **google 'mta mua'**. ('MUA' is the mail user agent, the 
+  mail client an end user uses for handling email.)
 
   If you choose postfix, googling 'ubuntu postfix' will point you at the
   official ubuntu manual section.
@@ -143,7 +143,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   If you want to test your local mail setup, you can use the command 'mail'
   from the package 'bsd-mailx' to send an email from the command line.
 
-  Google terms 'linux send email command line'
+  **Google terms 'linux send email command line'**
 
   Make sure to read the help articles you'll find to the end, the usage
   of 'mail' is not really intuitive, but it is a very helpful tool.
@@ -162,7 +162,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   If you don't want to install a MUA, you can always read your email with
   less:
 
-  $ less /var/mail/grader
+  **$ less /var/mail/grader**
 
-  and google 'linux mail spool' for some background why it ends up there.
+  and **google 'linux mail spool'** for some background why it ends up there.
   
