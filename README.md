@@ -72,5 +72,44 @@ configuration), make sure you ALWAYS stay logged in in at least one shell
 window. Do NOT log out until you have successfully logged in with the new
 configuration / user / key, or you might lock yourself out of the system.
 
+5. Update all installed packages
+
+Google terms 'ubuntu update packages'
+
+Manual update is easy -- don't forget you need use sudo to do this, and
+don't let the different options to apt-get confuse you.
+
+In the rubric you'll find that for 'exceeds specifications' you need to
+configure automatic unattended package updates. This is a bit controversial,
+as every update also has a chance to break your system due to configuration
+or setup changes you need to implement in your applications to run them on the
+newer versions of your platform (web server, databases etc.).
+
+It is, however, possible to only install security updates automatically. This
+might be a good compromise depending on your needs. Security updates should be
+installed as soon as possible, and the distributions (usually) don't include
+dangerous changes / updates in security updates. You still should subscribe to
+the security announcement channels of the distribution you are using, and of
+course monitor the activity of any automatic updates you have set up.
+
+Google terms 'ubuntu automatic security updates'
 
 
+Addendum: sending / delivering local email
+
+Some tasks ask for notification emails being sent in certain situations.
+
+For this to work, you need a local MTA (mail transport agent) to be installed
+that will accept and deliver the emails. The most popular alternatives on
+linux systems are sendmail, exim4 and postfix, of which I _think_ postfix is
+easiest to configure. The ubuntu package even contains a few default 
+configurations, of which 'local-only' is sufficient for this project.
+
+The choice of MTA is subjective, of course.
+
+If you want to learn more about email systems and the abbreviations used
+to describe them, google 'mta mua'. ('MUA' is the mail user agent, the mail
+client an end user used for handling email.)
+
+If you choose postfix, googling 'ubuntu postfix' will point you at the
+official ubuntu manual section.
