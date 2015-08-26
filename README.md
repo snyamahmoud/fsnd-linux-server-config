@@ -23,6 +23,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   (These steps are also documented on the development environment page.)
 
 3. Users
+
   You will be asked later to disable direct logins for the root user for 
   security reasons. If you do so, you need a different user to login with.
   In this project, it is specified that this user should be called 'grader'.
