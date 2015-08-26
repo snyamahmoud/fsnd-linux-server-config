@@ -1,6 +1,6 @@
 ## FSND Project 5: Linux Server Config
 
-This is not a copy & paste walkthrough. It still is full of spoilers.
+This is not a copy & paste walkthrough. It still can be consider
 
 1. The VM
 
@@ -140,7 +140,7 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
 
   - SSH on port 2200 (we moved it there in the step above)
   - HTTP on port 80 (we will run a webserver later)
-  - NTP on port 123 (explained in the next step)
+  - NTP on port 123 (network time protocol, explained in the next step)
 
   The ubuntu documentation of UFW is detailed enough to do this. You configure
   the firewall by calling
@@ -155,6 +155,43 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
   If you are curious where the configuration you entered on the command line
   is stored, **google 'ubuntu ufw rules stored'**. Also remember that the
   'ufw status' command has a 'verbose' option for more information.
+
+  I was wondering why we are asked to open port 123 for ntp: the firewall
+  in general allows all connections initiated by a service on the system
+  (i.e. 'outgoing'), and ntp runs as a daemon and should be covered by this.
+
+  However, I found a few discussions of this questions when **googling for
+  'ntp firewall bidirectional'**, and as it's explicitly written in the
+  project details, I've opened the port as well.
+  
+  1. Monitoring
+
+  For 'exceeds expectations' we are asked to monitor unsuccessful connection
+  attempts, block the IP addresses they come from, and send an email
+  notification about the fact.
+
+  A good starting point is **googling for 'ubuntu block ip after failed 
+  login'**.
+
+8. Date and Time
+
+  The project details ask for the system to be running on UTC time.
+
+  **Google terms: 'timezone utc gmt'** for a bit of (historical) background
+  about timezones and UTC,
+
+  **Google terms: 'ubuntu set timezone'** for how to do it.
+
+  NTP is a service that requests accurate time from external time servers
+  and adjusts the server clock accordingly. It is not specified anywhere that 
+  ntp should be set up, but a) you really want the correct time for all sorts
+  of reasons (**google 'why ntp is important'**, and b) as we already opened 
+  the ntp port in the firewall we can just as well use it.
+
+  **Google terms: 'ubuntu ntp'**
+
+  There are several options, I chose the one where a daemon is always running
+  and taking care of the time synchronisation. 
 
 20. Addendum I: sending / delivering local email
 
