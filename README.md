@@ -43,3 +43,34 @@ self-explanatory, but if in doubt:
 Google terms: 'ubuntu sudoers.d'
 
 In this step, make sure the 'grader' user can use sudo.
+
+4a. SSH public key login for user 'grader'
+
+This is only listed in the rubric, not in the project details.
+
+You will be asked to disable root login by only allowing ssh login to 
+non-root users. Also, ssh login should only be possible with ssh public keys, 
+password authentication should be disabled. 
+
+This is a very common security best practice: attackers know that every system 
+has a user 'root' and will try to login with that account. Attackers do not 
+know how you named your non-root users. If password login is enabled and no
+further measures taken, an attacker can try to guess the password indefinitely
+and may eventually get access that way.
+
+Google terms: 'ssh key authentication'
+
+You can either create a new key pair for the 'grader' user, or just use the
+private key that has already been created and configured for the root user.
+
+You will be asked to hand over the private key for that key pair when you
+submit the project, so don't use a key pair that you actually use in real life.
+
+Take care that the file permissions on all ssh-related files are set correctly
+(it will complain). While you are playing around with SSH keys (and later,
+configuration), make sure you ALWAYS stay logged in in at least one shell
+window. Do NOT log out until you have successfully logged in with the new
+configuration / user / key, or you might lock yourself out of the system.
+
+
+
