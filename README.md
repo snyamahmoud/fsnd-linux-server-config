@@ -97,8 +97,23 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
 
   Google terms 'ubuntu automatic security updates'
 
+6. Use a non-standard port for SSH
 
-20. Addendum: sending / delivering local email
+  The rationale for this is similar to that for not using the root account
+  for login: attackers know that the ssh service is usually listening on port
+  22, so they point their attacks there. If ssh is listening elsewhere, they
+  at least have to find out where first.
+
+  Google terms: 'linux sshd use different port'
+
+  The project asks us to use port 2200. As said above, don't log out of
+  your working ssh session before you have confirmed you can log in on the
+  new port!
+
+  Also, be sure you understand the difference between 'ssh' and 'sshd' and
+  their respective config files.
+
+20. Addendum I: sending / delivering local email
 
   Some tasks ask for notification emails being sent in certain situations.
 
@@ -116,3 +131,30 @@ This is not a copy & paste walkthrough. It still is full of spoilers.
 
   If you choose postfix, googling 'ubuntu postfix' will point you at the
   official ubuntu manual section.
+
+  If you want to test your local mail setup, you can use the command 'mail'
+  from the package 'bsd-mailx' to send an email from the command line.
+
+  Google terms 'linux send email command line'
+
+  Make sure to read the help articles you'll find to the end, the usage
+  of 'mail' is not really intuitive, but it is a very helpful tool.
+
+  (An alternative provider of the 'mail' command is the package GNU mailutils,
+  but it will install more dependent packages, which is why I prefer 
+  bsd-mailx'.
+
+21. Addendum II: Reading local email
+
+  For reading email on the command line, I prefer 'mutt', a very powerful
+  text-based email client (MUA). If you already know the 'nano' text editor,
+  you might want to check out 'pine' instead which has a similar user 
+  interface.
+
+  If you don't want to install a MUA, you can always read your email with
+  less:
+
+  $ less /var/mail/grader
+
+  and google 'linux mail spool' for some background why it ends up there.
+  
