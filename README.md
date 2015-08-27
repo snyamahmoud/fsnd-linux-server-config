@@ -173,6 +173,9 @@ This is not a copy & paste walkthrough. It still can be consider
   A good starting point is **googling for 'ubuntu block ip after failed 
   login'**.
 
+  When googling, remember that we are using 'ufw' for firewall configuration
+  instead of 'iptables', you might want to refine your search terms.
+
 8. Date and Time
 
   The project details ask for the system to be running on UTC time.
@@ -192,6 +195,27 @@ This is not a copy & paste walkthrough. It still can be consider
 
   There are several options, I chose the one where a daemon is always running
   and taking care of the time synchronisation. 
+
+9. Apache Web Server & WSGI
+
+  Apache is a web server implementing the HTTP standard. On its own it
+  delivers files from the file system to the user's browser. If there is
+  code to be executed, i.e. a full-fledged web application backend running,
+  Apache is usually extended with modules.
+
+  WSGI is another standard that defines how web application backends written
+  in Python can be served by web servers.
+
+  **Google terms: 'http how does it work', 'apache http', 'ubuntu apache',
+  'apache intall modules', 'apache wsgi'**
+
+  If you haven't installed a web server before, don't despair and take the
+  time to do a few of the simpler tutorials: set up a static web site, set
+  up a 'Hello World' app with WSGI first.
+
+  You also need to decide how you want to handle your python installation.
+  The application needs external python libraries, and these can be installed
+  globally, or locally to the application, e.g. with virtualenv. 
 
 20. Addendum I: sending / delivering local email
 
