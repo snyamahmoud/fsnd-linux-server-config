@@ -351,15 +351,70 @@ files as plain text (and why I do not use a directory below the docroot).
 
 ### 11.4. Make the application known to apache
 
-My main WSGI entry point is the file app.wsgi.
+My main WSGI entry point is the file app.wsgi. In my case, the wsgi file is
+not in the same directory as the rest of the application, so I had to make
+sure that the application directory is in python's search path.
 
-**Google terms: 'flask wsgi', 'python path wsgi'**
+**Google terms: 'flask wsgi'**
+
+To enable WSGI, it needs to be configured in the apache configuration files
+below /etc/apache2. As I don't have any other sites or applications running
+in this VM, I chose /etc/apache2/sites-enabled/000-default.conf to put
+all my new apache directives in.
+
+**Google terms: 'apache wsgi'**
+
+As I have installed the python libraries my project needs into a custom
+path, I had to let the WSGI module know about this path. Also, my application 
+contains static files in the 'static' directory, so I had to make this
+directory available under '/static' as well.
+ 
+(How the apache configuration files are organized below /etc varies between 
+linux distributions. For details on the Debian/Ubuntu way, **google 'debian 
+apache config'**.)
 
 ### 11.5. Adjust the application to running as WSGI app
 
-### 11.6. Check security settings: .git directory, .py files
+My application reads in some information from json files in the application
+directory. When the app is running in WSGI, the working directory is no
+longer the directory where the .py files are stored so the json files could
+no longer be found.
+
+After **googling for 'wsgi current working directory'** I had to make a
+small code change in my application to fix that problem.
+
+At the end of this step, when you (re)start apache, your application should
+be running and accessible on port 80 on your VM.
+
+### 11.6. Check security settings: .git directory, .py files, /static
+
+The only directory below /var/www/bookswapping/bookswapping that is
+directly served by apache is 'static'. I don't want people to look at the
+content of directories, so I have forbidden directory listings for this
+directory.
+
+**Google terms: 'apache disable directory listing'**
+
+All other requests go through the Flask application, which responds with
+'404 - File not found' HTTP errors on all paths which are not configured
+as routes within the app.
+
+To make sure that no content is served that shouldn't be, I test with the
+following URLs:
+
+- http://MYURL/.git/
+- http://MYURL/static/
+- http://MYURL/database.py
+- http://MYURL/static/../database.py
 
 ### 11.7. Make the new location known to OAuth providers 
+
+Udacity only gives us an IP address to connect to. To register the application
+at the OAuth providers used for login, I need a fully-qualified domain name.
+
+This can be found out through **reverse DNS lookup** services (google that!).
+
+Once the new location has been registered, OAuth login should be working.
 
 ## Addendum I: sending / delivering local email
 
