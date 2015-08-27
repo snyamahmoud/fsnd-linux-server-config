@@ -265,7 +265,7 @@ This is not a copy & paste walkthrough. It still can be consider
   exact error message will most likely help.
 
   Postgresql has different authentication methods. One of them, 'peer',
-  assumes that there is a system user that is called the same as the database
+  assumes that there is a system user with the same name as the database
   user, and uses system calls to linux to authenticate that user. If you
   choose NOT to create a system user matching your database user, this
   mechanism fails.
@@ -282,11 +282,81 @@ This is not a copy & paste walkthrough. It still can be consider
   able to create and drop tables. This can be tested with psql.
 
 
-13. Deploy app
+11. Deploy app
 
-  You also need to decide how you want to handle your python installation.
+  1. Install git and checkout app
+
+  Git is available through apt-get, just install it.
+
+  Before you can checkout the application, you need to find a directory it
+  can run from.
+
+  By convention, files and applications that are served by a web server
+  are stored below /var/www on Ubuntu (and Debian). The default document
+  root for apache is /var/www/html.
+
+  **Google terms: 'apache docroot'**
+
+  The document root (often shortened to 'docroot') is necessary when
+  files are served directly from the file system. Everything below the
+  docroot is accessible to the world, unless further restrictions are
+  configured. Everything outside this directory hierarchy is invisible to
+  the web server.
+
+  Our python web application, however, will not be served directly from the
+  file system, but through the WSGI module. I therefore decided to keep it
+  in a directory outside the docroot. I chose '/var/www/bookswapping' as
+  base directory. This directory will contain the git checkout in
+  '/var/www/bookswapping/bookswapping' and the file 
+  '/var/www/bookswapping/app.wsgi' to configure and start the application.
+
+  I chose to checkout the application code as user 'grader', this user
+  is also the owner of the directory '/var/www/bookswapping'. The web
+  server will need to be able to read from, but not write to this directory.
+
+  2. Install necessary python dependencies
+
   The application needs external python libraries, and these can be installed
-  globally, or locally to the application, e.g. with virtualenv. 
+  in the default system python directories, so that they are accessible by 
+  default by all users and applications, or -- elsewhere. I chose 'elsewhere',
+  because there can be more than one python application running on a system,
+  and they might need different versions of certain libraries. Having the
+  dependencies of each application in separate directories keeps things
+  clean and easy to manage.
+
+  I chose the directory '/var/www/bookswapping/python' for all python
+  dependencies of my application. 'pip' can be told to use a different
+  directory for installation. It also can be told to not rely on python
+  libraries that are already present on the system, but to really install
+  everything into that target directory.
+
+  **Google terms: 'pip install to specific directory'**
+
+  Note that no matter where you choose to install the additional libraries,
+  pip will download the sources and compile them, so depending on your project 
+  you will need to install additional packages containing development 
+  libraries and tools. 
+
+  3. Use the local postgres database
+
+  Find the code in your application where you connect to the database, and
+  change it to use the newly created local postgres database.
+
+  **Google terms: 'sqlalchemy postgres database url format'**
+
+  You will need to enter the database password there. This is one of the 
+  reasons why you should make sure that apache does not serve your python 
+  files as plain text (and why I do not use a directory below the docroot).
+
+  4. Make the application known to apache
+
+  My main WSGI entry point is the file app.wsgi.
+
+  **Google terms: 'flask wsgi', 'python path wsgi'**
+
+  5. Adjust the application to running as WSGI app
+
+  6. Make the new location known to OAuth providers 
 
 20. Addendum I: sending / delivering local email
 
