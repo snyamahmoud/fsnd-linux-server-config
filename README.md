@@ -213,6 +213,77 @@ This is not a copy & paste walkthrough. It still can be consider
   time to do a few of the simpler tutorials: set up a static web site, set
   up a 'Hello World' app with WSGI first.
 
+10. PostgreSQL
+
+  The database to use in this project is PostgresQL, and it is included
+  in the Ubuntu distribution and can be installed with apt-get. You will
+  need both the server and the client packages.
+
+  **Google terms: 'ubuntu postgresql'**
+
+  1. Disable remote connections
+
+  The web application will run on the same system as postgresql, and it will
+  be the only application that needs access to the database. Therefore there
+  is no need for remote access to the database, and for security reasons it
+  is best to disable it completely (if it isn't disabled by default).
+
+  **Google terms: 'postgresql remote access'**
+
+  Also note that the firewall would have blocked access to the postgresql
+  port anyway, as we haven't explicitly opened it in the firewall
+  configuration step.
+
+  **Google terms: 'postgresql ports'** 
+
+  In this step it is helpful to also find out how to connect to a postgres
+  database with the command line client, and to look around what the basic
+  setup looks like, what users already exist etc.
+
+  2. Create database user and database for the application
+
+  The application obviously needs access to the database. To make sure that
+  even a potentially successful attacker can do as little harm as possible,
+  it is common practice to create a separate database user for each 
+  application, and to give it only the privileges it really needs. As the app 
+  uses SQLalchemy to manage the database, the database user must be able to 
+  create and drop tables, but it is not necessary that it can create or drop 
+  the database itself.
+
+  There is a convention how to name database users and their 'default'
+  databases, it makes sense to follow it here.
+
+  The project details ask for the database user to be named 'catalog', I
+  chose to give it the same name as my application ('bookswapping').
+
+  **Google terms: 'ubuntu postgresql steup', 'postgres create user', 
+  'postgres create database', 'postgres user privileges', 'postgres grant 
+  on database'**
+
+  If you create the database for the application and the corresponding
+  database user and still can't login through psql, googling for the
+  exact error message will most likely help.
+
+  Postgresql has different authentication methods. One of them, 'peer',
+  assumes that there is a system user that is called the same as the database
+  user, and uses system calls to linux to authenticate that user. If you
+  choose NOT to create a system user matching your database user, this
+  mechanism fails.
+
+  It also makes a difference whether you call psql with the parameter '-h
+  127.0.0.1', telling it to connect to localhost through a network connection,
+  or without any parameter specifying the kind of connection. In the latter
+  case, it defaults to using unix domain sockets (**google** that for more
+  information).
+
+  For more details, and in case of login problems, find and read the file 
+  'pg_hba.conf'. At the end of this step you should be able to log in with
+  your newly created database user to postgresql, and this user should be
+  able to create and drop tables. This can be tested with psql.
+
+
+13. Deploy app
+
   You also need to decide how you want to handle your python installation.
   The application needs external python libraries, and these can be installed
   globally, or locally to the application, e.g. with virtualenv. 
@@ -261,4 +332,5 @@ This is not a copy & paste walkthrough. It still can be consider
   **$ less /var/mail/grader**
 
   and **google 'linux mail spool'** for some background why it ends up there.
-  
+ 
+22. Addendum III: Monitoring system health 
