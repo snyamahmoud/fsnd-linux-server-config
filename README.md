@@ -208,7 +208,7 @@ WSGI is another standard that defines how web application backends written
 in Python can be served by web servers.
 
 **Google terms: 'http how does it work', 'apache http', 'ubuntu apache',
-'apache intall modules', 'apache wsgi'**
+'apache install modules', 'apache wsgi'**
 
 If you haven't installed a web server before, don't despair and take the
 time to do a few of the simpler tutorials, set up a static web site and set
@@ -462,3 +462,22 @@ less:
 and **google 'linux mail spool'** for some background why it ends up there.
  
 ## Addendum III: Monitoring system health 
+
+I want to setup Nagios to monitor that Apache and PostgreSQL are running.
+If either Apache or PostgreSQL are not running, I want Nagios to send out
+an email notification to grader@localhost.
+
+**Google terms: 'ubuntu nagios'**
+
+On Ubuntu, Nagios 3 is available through apt-get. This is not the newest
+version, but I don't want to compile nagios from source code, so I use
+that version.
+
+Nagios is often used in a distributed manner, where one central server
+collects monitoring information from several nodes. This setup is much
+simpler, as I only have one VM to monitor and run nagios itself on.
+
+The check for a running HTTP server is included in the nagios3 sample
+configuration. I added a check for PostgreSQL. For this to work, I allowed
+the nagios user to connect to the PostgreSQL database without a password
+in pg_hba.conf
