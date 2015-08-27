@@ -3,6 +3,11 @@
 This is not a copy & paste walkthrough, but it does answer some questions
 you might have found out by research on your own. Use with caution.
 
+Reviewers, please see /root/README on the VM for details not included here.
+The application is running on:
+
+  http://ec2-54-68-6-64.us-west-2.compute.amazonaws.com/
+
 ## 1. The VM
 
 Udacity will provide a virtual machine running in the Amazon cloud. The
