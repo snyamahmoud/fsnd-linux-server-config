@@ -7,6 +7,8 @@ Reviewers, please see /root/README on the VM for details not included here.
 The application is running on:
 
   http://ec2-54-68-6-64.us-west-2.compute.amazonaws.com/
+  IP address: 54.68.6.64
+  SSH port: 22
 
 ## 1. The VM
 
