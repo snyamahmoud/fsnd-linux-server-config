@@ -1,4 +1,4 @@
-# FSND Project 5: Linux Server Config
+# FSND Project 3: Linux Server Config
 
 This is not a copy & paste walkthrough, but it does answer some questions
 you might have found out by research on your own. Use with caution.
